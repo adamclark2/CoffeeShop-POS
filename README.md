@@ -11,4 +11,4 @@ A point of sale system for a coffee shop.
         cd Source/Web-App
         dotnet run
 
-Open a web browser and go to `http://localhost:5000`
+Open a web browser and go to http://localhost:5000
