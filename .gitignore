@@ -1,0 +1,13 @@
+# Mac OS
+.DS_Store
+
+# Build products
+
+# Msc
+bin/
+*.dll
+*.pdb
+*.runtimeconfig.dev.json
+*.runtimeconfig.json
+*.deps.json
+obj/
