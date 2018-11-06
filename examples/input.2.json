@@ -1,0 +1,20 @@
+{
+    "Drinks":[
+        {
+            "Name": "Coffee",
+            "Sizes": [
+                {"Name": "Small", "Price": 1.00},
+                {"Name": "Medium", "Price": 2.00},
+                {"Name": "Large", "Price": 3.00}
+            ]
+        }
+    ],
+
+    "Food": [
+        {
+            "Name": "Bagle",
+            "Sizes": [{"Name": "Big", "Price": 2.00}],
+            "Extras": [{"Name": "Cream-Cheese", "Price": 0.00}]
+        }
+    ]
+}

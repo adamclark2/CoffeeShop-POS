@@ -2,12 +2,13 @@
 .DS_Store
 
 # Build products
-
-# Msc
 bin/
 *.dll
 *.pdb
+
+# Msc
 *.runtimeconfig.dev.json
 *.runtimeconfig.json
 *.deps.json
 obj/
+debug/
