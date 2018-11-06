@@ -17,6 +17,9 @@ namespace Model{
         public List<Size> Sizes{get;set;}
         public List<Extra> Extras{get;set;}
 
+        /**
+            Print the food item to the command line
+         */
         public void print(){
             System.Console.Write(Name + "\n");
             System.Console.Write("   Sizes:\n");

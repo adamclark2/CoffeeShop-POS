@@ -4,6 +4,10 @@ using System.Runtime.Serialization;
 
 namespace DataRepository{
 
+    /**
+        A DataRepo for all the Drinks, Food, and Extras.
+        This repo can be serialized and de-serizlized to/from JSON
+     */
     [DataContract]
     public class JsonDataRepo : DataRepo{
 
