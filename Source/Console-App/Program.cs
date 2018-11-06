@@ -5,9 +5,13 @@ using System.IO;
 
 namespace Console_App
 {
+    /**
+        The 'Program' class sets up the Console_App
+     */
     class Program
     {
         private static ConsoleMenu menu;
+
         static void Main(string[] args)
         {
             if(args.Length == 0){
@@ -23,10 +27,12 @@ namespace Console_App
             menu = new ConsoleMenu();
 
             OpenFile(args[0]);
-            PrintData();
             ProcessInput();
         }
 
+        /**
+            Print the first food in the DataRepo
+         */
         static void PrintData(){
             System.Console.Write("\n\nThe first food is: ");
             System.Console.Write(DataRepoFactory.Repo.getAllFoods()[0].Name);
@@ -34,13 +40,23 @@ namespace Console_App
             DataRepoFactory.Repo.getAllFoods()[0].print();
         }
 
+        /**
+            Begin processing input, 
+            this should be done after setup
+         */
         static void ProcessInput(){
+            menu.printWelcomeMessage();
             while(true){
+                Console.Write("Enter a Command:\n");
                 string ln = System.Console.ReadLine();
                 menu.processLine(ln);
             }
         }
 
+        /**
+            Open the JSON file, load it into a DataRepo, and tell the Factory
+            for service discovery. See DataRepoFactory for more information.
+         */
         static void OpenFile(string fileName){
             if(!File.Exists(fileName)){
                 System.Console.Write("File doesn't exist\n");
@@ -53,7 +69,7 @@ namespace Console_App
                 fs.Position = 0;
                 JsonDataRepo r = (JsonDataRepo) ser.ReadObject(fs);
                 DataRepoFactory.setupFactory(r);
-            }catch (Exception e){
+            }catch{
                 System.Console.Write("Cannot open the file specified\n");
                 System.Environment.Exit(2);
             }
