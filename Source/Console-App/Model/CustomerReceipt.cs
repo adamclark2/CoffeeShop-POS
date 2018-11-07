@@ -29,14 +29,16 @@ namespace Model{
                     bldr.Clear();
                     i++;
                 }else if(arr[i].Equals('\"')){
+                    i++;
                     // Keep adding until quote
                     while(i < arr.Length && arr[i] != '\"'){
                         bldr.Append(arr[i++]);
                     }
-                    if(i < arr.Length){
+                    if(i > arr.Length){
                         // Error!
                         System.Console.Write("Lexing error!\n");
                     }
+                    System.Console.Write("---" + bldr.ToString() + "===\n\n");
                     i++;
                 }else if(arr[i].Equals(',')){
                     string s = bldr.ToString();

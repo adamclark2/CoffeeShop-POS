@@ -25,6 +25,11 @@ namespace Console_App
                 System.Environment.Exit(2);
             }
 
+            if(!File.Exists(args[0])){
+                System.Console.Write("File doesn't exist\n");
+                System.Environment.Exit(2);
+            }
+
             char[] arr = args[0].ToCharArray();
             int endIdx = -1;
             int startIdx = -1;
@@ -73,11 +78,6 @@ namespace Console_App
             for service discovery. See DaoFactory for more information.
          */
         static void OpenFile(string fileName){
-            if(!File.Exists(fileName)){
-                System.Console.Write("File doesn't exist\n");
-                System.Environment.Exit(2);
-            }
-
             try{
                 DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(JsonDao));
                 FileStream fs = File.Open(fileName, FileMode.Open);

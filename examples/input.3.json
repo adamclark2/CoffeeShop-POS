@@ -9,7 +9,7 @@
             ]
         },
         {
-            "Name": "CoffeeV2",
+            "Name": "Coffee V2",
             "Sizes": [
                 {"Name": "Small", "Price": 1.00},
                 {"Name": "Medium", "Price": 2.00},
