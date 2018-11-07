@@ -58,5 +58,48 @@ namespace DataAbstration{
             }
             return null;
         }
+
+        public bool removeDrink(string name){
+            bool hasRem = false;
+            List<Drink> remList = new List<Drink>();
+            foreach(Drink d in getAllDrinks()){
+                if(d.Name.Equals(name)){
+                    remList.Add(d);
+                    hasRem = true;
+                }
+            }
+            foreach(Drink d in remList){
+                getAllDrinks().Remove(d);
+            }
+            return hasRem;
+        }
+        public bool removeFood(string name){
+            bool hasRem = false;
+            List<Food> remList = new List<Food>();
+            foreach(Food d in getAllFoods()){
+                if(d.Name.Equals(name)){
+                    remList.Add(d);
+                    hasRem = true;
+                }
+            }
+            foreach(Food d in remList){
+                getAllFoods().Remove(d);
+            }
+            return hasRem;
+        }
+        public bool removeDrinkExtra(string name){
+            bool hasRem = false;
+            List<Extra> remList = new List<Extra>();
+            foreach(Extra d in getAllDrinkExtras()){
+                if(d.Name.Equals(name)){
+                    remList.Add(d);
+                    hasRem = true;
+                }
+            }
+            foreach(Extra d in remList){
+                getAllDrinkExtras().Remove(d);
+            }
+            return hasRem;
+        }
     }
 }

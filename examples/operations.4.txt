@@ -1,0 +1,8 @@
+menu-list
+menu-remove-drink "coffee"
+menu-remove-food "bagel"
+menu-remove-drinkextra "whipcream"
+menu-remove-drinkextra "no" "no" nah
+menu-remove-drinkextra no
+menu-list
+exit
