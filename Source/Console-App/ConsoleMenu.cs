@@ -1,6 +1,8 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using DataAbstration;
+using System.Runtime.Serialization.Json;
 using Model;
 
 namespace Console_App
@@ -26,6 +28,7 @@ namespace Console_App
         public ConsoleMenu(){
             consoleDelegates = new Dictionary<string,ConsoleMenuDelegate>();
             consoleDelegates.Add("exit",       exitDelegate);
+            consoleDelegates.Add("q",          exitDelegate);
             consoleDelegates.Add("order",      orderDelegate);
             consoleDelegates.Add("menu-list",  menuListDelegate);
             consoleDelegates.Add("help",       helpDelegate);
@@ -66,7 +69,26 @@ namespace Console_App
             Order somthing
          */
         private void orderDelegate(string args){
-            Console.Write("Thanks, for your order have a good day!\n");
+            CustomerReceipt receipt = new CustomerReceipt();
+            receipt.addOrders(args);
+
+            if(!Directory.Exists("outputs")){
+                Directory.CreateDirectory("outputs");
+            }
+            
+            FileStream fs = File.Create("outputs/ADAM.CLARK.X.json");
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Order));
+            ser.WriteObject(fs, receipt.order);
+            fs.Flush();
+            fs.Close();
+
+            fs = File.Create("outputs/ADAM.CLARK.X.receipt.json");
+            ser = new DataContractJsonSerializer(typeof(CustomerReceipt));
+            ser.WriteObject(fs, receipt);
+            fs.Flush();
+            fs.Close();
+
+            Console.Write("\nThanks, for your order have a good day!\n");
         }
 
         /**
@@ -110,7 +132,7 @@ namespace Console_App
 
         private void listDrinkExtras(){
             Console.Write("Drink Extras:\n");
-            foreach(DrinkExtra f in DaoFactory.DAO.getAllDrinkExtras()){
+            foreach(Extra f in DaoFactory.DAO.getAllDrinkExtras()){
                 Console.Write("   " + f.Name + "--" + "${0,-4:N2}", f.Price);
                 Console.Write("\n");
             }

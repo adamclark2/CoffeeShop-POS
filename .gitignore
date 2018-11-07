@@ -12,3 +12,4 @@ bin/
 *.deps.json
 obj/
 debug/
+outputs/

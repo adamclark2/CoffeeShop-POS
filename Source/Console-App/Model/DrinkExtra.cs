@@ -7,7 +7,7 @@ namespace Model{
         For example:
         A coffee can have a flavorshot
      */
-    public class DrinkExtra{
+    public class Extra{
         public string Name{get;set;}
         public double Price{get;set;}
     }

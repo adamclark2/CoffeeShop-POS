@@ -13,6 +13,10 @@ namespace DataAbstration{
     public interface ItemDao{
         List<Food> getAllFoods();
         List<Drink> getAllDrinks();
-        List<DrinkExtra> getAllDrinkExtras();
+        List<Extra> getAllDrinkExtras();
+
+        Food getFood(string name);
+        Drink getDrink(string name);
+        Extra getDrinkExtra(string name);
     }
 }

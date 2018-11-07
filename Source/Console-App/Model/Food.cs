@@ -6,16 +6,20 @@ namespace Model{
         public string Name{get;set;}
         public double Price{get;set;}
     }
-
-    public class Extra{
-        public string Name{get;set;}
-        public double Price{get;set;}
-    }
     
     public class Food{
         public string Name{get;set;}
         public List<Size> Sizes{get;set;}
         public List<Extra> Extras{get;set;}
+
+        public Extra getExtra(string name){
+            foreach(Extra e in Extras){
+                if(e.Name.Equals(name)){
+                    return e;
+                }
+            }
+            return null;
+        }
 
         /**
             Print the food item to the command line
