@@ -7,18 +7,18 @@
 
     "Drinks":[
         {
-            "Name": "Coffee",
+            "Name": "coffee",
             "Sizes": [
-                {"Name": "Small", "Price": 1.00},
-                {"Name": "Medium", "Price": 2.00},
-                {"Name": "Large", "Price": 3.00}
+                {"Name": "small", "Price": 1.00},
+                {"Name": "medium", "Price": 2.00},
+                {"Name": "large", "Price": 3.00}
             ]
         }
     ],
 
     "Food": [
         {
-            "Name": "Bagle",
+            "Name": "bagel",
             "Sizes": [{"Name": "Big", "Price": 2.00},{"Name": "half", "Price": 1.50}],
             "Extras": [{"Name": "Cream-Cheese", "Price": 0.00}, {"Name": "butter", "Price": 0.00}]
         }
