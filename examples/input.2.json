@@ -7,6 +7,14 @@
                 {"Name": "Medium", "Price": 2.00},
                 {"Name": "Large", "Price": 3.00}
             ]
+        },
+        {
+            "Name": "CoffeeV2",
+            "Sizes": [
+                {"Name": "Small", "Price": 1.00},
+                {"Name": "Medium", "Price": 2.00},
+                {"Name": "Large", "Price": 3.00}
+            ]
         }
     ],
 

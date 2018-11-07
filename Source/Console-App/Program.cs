@@ -1,5 +1,5 @@
 ﻿using System;
-using DataRepository;
+using DataAbstration;
 using System.Runtime.Serialization.Json;
 using System.IO;
 
@@ -31,13 +31,13 @@ namespace Console_App
         }
 
         /**
-            Print the first food in the DataRepo
+            Print the first food in the Dao
          */
         static void PrintData(){
             System.Console.Write("\n\nThe first food is: ");
-            System.Console.Write(DataRepoFactory.Repo.getAllFoods()[0].Name);
+            System.Console.Write(DaoFactory.DAO.getAllFoods()[0].Name);
             System.Console.Write("\n\n");
-            DataRepoFactory.Repo.getAllFoods()[0].print();
+            DaoFactory.DAO.getAllFoods()[0].print();
         }
 
         /**
@@ -54,8 +54,8 @@ namespace Console_App
         }
 
         /**
-            Open the JSON file, load it into a DataRepo, and tell the Factory
-            for service discovery. See DataRepoFactory for more information.
+            Open the JSON file, load it into a Dao, and tell the Factory
+            for service discovery. See DaoFactory for more information.
          */
         static void OpenFile(string fileName){
             if(!File.Exists(fileName)){
@@ -64,11 +64,11 @@ namespace Console_App
             }
 
             try{
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(JsonDataRepo));
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(JsonDao));
                 FileStream fs = File.Open(fileName, FileMode.Open);
                 fs.Position = 0;
-                JsonDataRepo r = (JsonDataRepo) ser.ReadObject(fs);
-                DataRepoFactory.setupFactory(r);
+                JsonDao r = (JsonDao) ser.ReadObject(fs);
+                DaoFactory.setupFactory(r);
             }catch{
                 System.Console.Write("Cannot open the file specified\n");
                 System.Environment.Exit(2);

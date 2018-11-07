@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using Model;
 using System.Runtime.Serialization;
 
-namespace DataRepository{
+namespace DataAbstration{
 
     /**
-        A DataRepo for all the Drinks, Food, and Extras.
-        This repo can be serialized and de-serizlized to/from JSON
+        A Dao for all the Drinks, Food, and Extras.
+        This Dao can be serialized and de-serizlized to/from JSON
      */
     [DataContract]
-    public class JsonDataRepo : DataRepo{
+    public class JsonDao : ItemDao{
 
         #pragma warning disable 0649
         [DataMember]
@@ -24,26 +24,14 @@ namespace DataRepository{
         private List<DrinkExtra> DrinkExtras;
 
 
-
-
         public List<Food> getAllFoods(){
-            return this.Food;
+            return this.Food != null ? this.Food : new List<Food>();
         }
         public List<Drink> getAllDrinks(){
-            return Drinks;
+            return Drinks != null ? this.Drinks : new List<Drink>();
         }
         public List<DrinkExtra> getAllDrinkExtras(){
-            return DrinkExtras;
-        }
-
-        public Food getFoodWithName(string name){
-            return null;
-        }
-        public Drink getDrinkWithName(string name){
-            return null;
-        }
-        public DrinkExtra getDrinkExtrasWithName(string name){
-            return null;
+            return DrinkExtras != null ? this.DrinkExtras : new List<DrinkExtra>();
         }
     }
 }
