@@ -3,6 +3,8 @@ using System.IO;
 using System.Collections.Generic;
 using DataAbstration;
 using System.Runtime.Serialization.Json;
+using System.Xml;
+using System.Text;
 using Model;
 
 namespace Console_App
@@ -76,17 +78,20 @@ namespace Console_App
                 Directory.CreateDirectory("outputs");
             }
             
-            FileStream fs = File.Create("outputs/ADAM.CLARK.X.json");
+            FileStream fs = File.Create("outputs/ADAM.CLARK." + Program.number + ".json");
             DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Order));
-            ser.WriteObject(fs, receipt.order);
-            fs.Flush();
-            fs.Close();
+            XmlDictionaryWriter wr = JsonReaderWriterFactory.CreateJsonWriter(fs,Encoding.UTF8, true,true, "  ");
+            ser.WriteObject(wr, receipt.order);
+            wr.Flush();
+            wr.Close();
 
-            fs = File.Create("outputs/ADAM.CLARK.X.receipt.json");
+
+            fs = File.Create("outputs/ADAM.CLARK."+ Program.number +".receipt.json");
+            wr = JsonReaderWriterFactory.CreateJsonWriter(fs,Encoding.UTF8, true,true, "  ");
             ser = new DataContractJsonSerializer(typeof(CustomerReceipt));
-            ser.WriteObject(fs, receipt);
-            fs.Flush();
-            fs.Close();
+            ser.WriteObject(wr, receipt);
+            wr.Flush();
+            wr.Close();
 
             Console.Write("\nThanks, for your order have a good day!\n");
         }

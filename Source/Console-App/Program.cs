@@ -11,6 +11,7 @@ namespace Console_App
     class Program
     {
         private static ConsoleMenu menu;
+        public static string number = "ERROR";
 
         static void Main(string[] args)
         {
@@ -23,6 +24,20 @@ namespace Console_App
                 System.Console.Write("Please specify only ONE JSON file on the command line\n");
                 System.Environment.Exit(2);
             }
+
+            char[] arr = args[0].ToCharArray();
+            int endIdx = -1;
+            int startIdx = -1;
+            for(int i = arr.Length - 1; i >= 0;i--){
+                if(endIdx == -1 && arr[i].Equals('.')){
+                    endIdx = i;
+                }else if(startIdx == -1 && arr[i].Equals('.')){
+                    startIdx = i + 1;
+                }
+            }
+            Program.number = args[0].Substring(startIdx, endIdx - startIdx);
+
+
 
             menu = new ConsoleMenu();
 
