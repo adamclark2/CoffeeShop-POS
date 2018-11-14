@@ -28,42 +28,43 @@ namespace Model{
                 if(f == null && d == null){
                     // Error
                     System.Console.Write("\n ERROR item isn't in database![" + tokens[1] + "]\n");
-                }
-                List<Extra> extras = new List<Extra>();
-                OrderedItem oo = null;
-
-
-                int i = 3;
-                if(f == null){
-                    while(i < tokens.Count && !tokens[i].Equals(",")){
-                        Extra ex = DaoFactory.DAO.getDrinkExtra(tokens[i++]);
-                        if(ex != null){extras.Add(ex);}
-                    }
-                    oo = new OrderedItem(d, extras, size);
+                    order.Error += "The item [" + tokens[1] + "] doesn't exist in the data.\n";
                 }else{
-                    while(i < tokens.Count &&!tokens[i].Equals(",")){
-                        Extra ex = f.getExtra(tokens[i++]);
-                        if(ex != null){extras.Add(ex);}
-                    }
-                    oo = new OrderedItem(f, extras, size);
-                }
+                    List<Extra> extras = new List<Extra>();
+                    OrderedItem oo = null;
 
-                items.Add(oo);
-                order.Price += oo.Price;
-                foreach(OrderErrors ee in oo.errors){
-                    if(ee == OrderErrors.NULL_ITEM){
-                        order.Error += "The item [" + oo.Name + "] doesn't exit in the data.\n";
+                    int i = 3;
+                    if(f == null){
+                        while(i < tokens.Count && !tokens[i].Equals(",")){
+                            Extra ex = DaoFactory.DAO.getDrinkExtra(tokens[i++]);
+                            if(ex != null){extras.Add(ex);}
+                        }
+                        oo = new OrderedItem(d, extras, size);
+                    }else{
+                        while(i < tokens.Count &&!tokens[i].Equals(",")){
+                            Extra ex = f.getExtra(tokens[i++]);
+                            if(ex != null){extras.Add(ex);}
+                        }
+                        oo = new OrderedItem(f, extras, size);
                     }
 
-                    if(ee == OrderErrors.NO_SIZE_SPECIFIED){
-                        order.Error += "The size [" + oo.Size + "] doesn't exist for item [" + oo.Name + "]\n";
-                    }
+                    items.Add(oo);
+                    order.Price += oo.Price;
+                    foreach(OrderErrors ee in oo.errors){
+                        if(ee == OrderErrors.NULL_ITEM){
+                            order.Error += "The item [" + oo.Name + "] doesn't exist in the data.\n";
+                        }
 
-                    /* The json file probably had a size listed twice or more...
-                        We used an arbitrary cost bassed off the ones in the file
-                     */
-                    if(ee == OrderErrors.TOO_MANY_SIZE){
-                        order.Error += "The size [" + oo.Size + "] exists multiple times for item [" + oo.Name + "]\n";
+                        if(ee == OrderErrors.NO_SIZE_SPECIFIED){
+                            order.Error += "The size [" + oo.Size + "] doesn't exist for item [" + oo.Name + "]\n";
+                        }
+
+                        /* The json file probably had a size listed twice or more...
+                            We used an arbitrary cost bassed off the ones in the file
+                        */
+                        if(ee == OrderErrors.TOO_MANY_SIZE){
+                            order.Error += "The size [" + oo.Size + "] exists multiple times for item [" + oo.Name + "]\n";
+                        }
                     }
                 }
             }

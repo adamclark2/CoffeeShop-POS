@@ -1,0 +1,26 @@
+{
+    "DrinkExtras": [
+        {"Name": "Espresso Shot", "Price": 0.50},
+        {"Name": "whipcream", "Price": 0.50},
+        {"Name": "flavorshot", "Price": 0.00}
+    ],
+
+    "Drinks":[
+        {
+            "Name": "coffee",
+            "Sizes": [
+                {"Name": "small", "Price": 1.00},
+                {"Name": "medium", "Price": 2.00},
+                {"Name": "large", "Price": 3.00}
+            ]
+        }
+    ],
+
+    "Food": [
+        {
+            "Name": "bagel",
+            "Sizes": [{"Name": "Big", "Price": 2.00},{"Name": "half", "Price": 1.50}],
+            "Extras": [{"Name": "Cream-Cheese", "Price": 0.00}, {"Name": "butter", "Price": 0.00}]
+        }
+    ]
+}

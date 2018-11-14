@@ -103,13 +103,34 @@ namespace DataAbstration{
         }
 
         public bool addDrink(Drink d){
-            return false;
+            foreach(Drink ee in Drinks){
+                if(d.Name.Equals(ee.Name)){
+                    return false;
+                }
+            }
+
+            this.Drinks.Add(d);
+            return true;
         }
         public bool addFood(Food f){
-            return false;
+            foreach(Food ee in Food){
+                if(f.Name.Equals(ee.Name)){
+                    return false;
+                }
+            }
+
+            this.Food.Add(f);
+            return true;
         }
         public bool addDrinkExtra(Extra e){
-            return false;
+            foreach(Extra ee in DrinkExtras){
+                if(e.Name.Equals(ee.Name)){
+                    return false;
+                }
+            }
+
+            this.DrinkExtras.Add(e);
+            return true;
         }
     }
 }

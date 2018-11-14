@@ -27,27 +27,127 @@ namespace Console_App
             consoleDelegates.Add("menu-remove-drink",       menuRemoveDrinkDelegate);
             consoleDelegates.Add("menu-remove-food",        menuRemoveFoodDelegate);
             consoleDelegates.Add("menu-remove-drinkextra",  menuRemoveDrinkExtraDelegate);
-            /* TODO 
-            consoleDelegates.Add("menu-add-drink",          menuAddDrinkDelegate);
-            consoleDelegates.Add("menu-add-food",           menuAddFoodDelegate);
-            consoleDelegates.Add("menu-add-drinkextra",     menuAddDrinkExtraDelegate);*/
-        }
-        private static void menuAddDrinkExtraDelegate(string args){
-            // menu-add-drinkextra "name" "cost"
-            string[] arr = args.Trim().Split('\"');
-            string name = arr[1];
-            string cost = arr[3];
+
+            consoleDelegates.Add("menu-add-drink",          (string args) => menuAddItemDelegate("drink", args));
+            consoleDelegates.Add("menu-add-drink-size",     (string args) => menuAddItemDelegate("drink-size", args));
+            consoleDelegates.Add("menu-add-drink-extra",    (string args) => menuAddItemDelegate("drink-extra", args));
+            consoleDelegates.Add("menu-add-food",           (string args) => menuAddItemDelegate("food", args));
+            consoleDelegates.Add("menu-add-food-size",      (string args) => menuAddItemDelegate("food-size", args));
+            consoleDelegates.Add("menu-add-food-extra",     (string args) => menuAddItemDelegate("food-extra", args));
         }
 
-        private static void menuAddDrinkDelegate(string args){
-            //menu-add-drink name "size-name:cost" "size-name:cost" ...
-        }
+        public static void menuAddItemDelegate(string type, string args){
+            List<List<string>> tokens = Tokenizer.tokenizeString(args);
+            if(tokens.Count < 1 || tokens.Count > 3){
+                Console.Write("Invalid arguments\n");
+                return;
+            }
 
-        private static void menuAddFoodDelegate(string args){
-            //menu-add-food name "size-name:cost" "size-name:cost"
-            // Add extras via additional user input
-        }
+            // Get a (string, double, bool(error)) tuple
+            // From the token list
+            Func<List<List<string>>, Tuple<string, double, Boolean>> getStrDouble = 
+                (List<List<string>> arg) => {
+                    double d;
+                    bool success = double.TryParse(arg[0][2], out d);
+                    Tuple<string, double, Boolean> ret = new Tuple<string, double, Boolean>(arg[0][1],d, success);
+                    return ret;
+                }
+            ;
 
+            // Get a (string, string, double, bool(error)) tuple
+            // From the token list
+            // For example
+            // item-add-size {name of item} {size name} {size price}
+            //                 Item1          Item2         Item3
+            // Error is true if somthing went wrong
+            Func<List<List<string>>, Tuple<string, string, double, Boolean>> getStrStrDouble = 
+                (List<List<string>> arg) => {
+                    double d;
+                    bool success = double.TryParse(arg[0][3], out d);
+                    Tuple<string,string,double,bool> ret 
+                        = new Tuple<string,string,double,bool>(arg[0][1],arg[0][2], d, success);
+                    return ret;
+                }
+            ;
+
+            string name = tokens[0][1];
+            Tuple<string,string,double,bool> tup2;
+            Tuple<string, double, Boolean> tup1;
+
+            switch (type){
+                // menu-add-drink {drink name}
+                case "drink":
+                    Drink d = new Drink();
+                    d.Name = name;
+                    if(DaoFactory.DAO.addDrink(d)){
+                        Console.Write("We have successfully added the drink [{0}]", name);
+                        Console.Write("Please add the size with menu-add-drink-size\nSee 'help' for details");
+                    }else{
+                        Console.Write("We couldn't add the drink, does another one exist under the same name?\n");
+                    }
+                return;
+
+                // menu-add-drink-size {drink name} {size name} {size price}
+                case "drink-size":
+                    tup2 = getStrStrDouble(tokens);
+                    if(tup2.Item4){
+                        Size sz = new Size(tup2.Item2, tup2.Item3);
+                        Console.Write("The drink is ::{0}::\n\n", tup2.Item1);
+                        Drink mod = DaoFactory.DAO.getDrink(tup2.Item1);
+                        if(mod != null){
+                            mod.Sizes.Add(sz);
+                        }else{
+                            Console.Write("That drink name isn't in our system");
+                        }
+                    }else{
+                        Console.Write("Prices have to be a number\n");
+                    }
+                return;
+
+                // menu-add-drink-extra {extra name} {extra price}
+                case "drink-extra":
+                    tup1 = getStrDouble(tokens);
+                    Extra ee = new Extra(tup1.Item1, tup1.Item2);
+                    DaoFactory.DAO.addDrinkExtra(ee);
+                break;
+
+                // menu-add-drink {food name}
+                case "food":
+                    Food ff = new Food();
+                    ff.Name = name;
+                    if(DaoFactory.DAO.addFood(ff)){
+                        Console.Write("We have successfully added the food [{0}]", name);
+                        Console.Write("Please add the size with menu-add-food-size\nSee 'help' for details");
+                    }else{
+                        Console.Write("We couldn't add the food, does another one exist under the same name?\n");
+                    }
+                break;
+
+                // menu-add-food-size {food name} {size name} {size price}
+                case "food-size":
+                    tup2 = getStrStrDouble(tokens);
+                    if(tup2.Item4){
+                        Size sz = new Size(tup2.Item2, tup2.Item3);
+                        Food modFood = DaoFactory.DAO.getFood(tup2.Item1);
+                        modFood.Sizes.Add(sz);
+                    }else{
+                        Console.Write("Prices have to be a number\n");
+                    }
+                break;
+
+                // menu-add-food-extra {food name} {size name} {size price}
+                case "food-extra":
+                    tup2 = getStrStrDouble(tokens);
+                    if(tup2.Item4){
+                        Extra exFood = new Extra(tup2.Item2, tup2.Item3);
+                        Food modFood = DaoFactory.DAO.getFood(tup2.Item1);
+                        modFood.Extras.Add(exFood);
+                    }else{
+                        Console.Write("Prices have to be a number\n");
+                    }
+                break;
+            }
+        }
         
 
         private static void menuRemoveDrinkExtraDelegate(string args){
@@ -114,14 +214,17 @@ namespace Console_App
             Console.Write("Drinks:\n");
             foreach(Drink d in DaoFactory.DAO.getAllDrinks()){
                 Console.Write("   " + d.Name + "\n");
-                foreach(Size sz in d.Sizes){
+                if(d.Sizes != null && d.Sizes.Count > 0){
+                    foreach(Size sz in d.Sizes){
                     Console.Write("   {0,-11}|", sz.Name);
-                }
-                Console.Write("\n");
-                foreach(Size sz in d.Sizes){
-                    Console.Write("   ${0,-10:N2}|", sz.Price);
+                    }
+                    Console.Write("\n");
+                    foreach(Size sz in d.Sizes){
+                        Console.Write("   ${0,-10:N2}|", sz.Price);
+                    }
                 }
                 Console.Write("\n\n");
+
             }
         }
 

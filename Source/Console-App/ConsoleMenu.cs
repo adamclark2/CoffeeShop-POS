@@ -50,7 +50,12 @@ namespace Console_App
             string[] spaceDelim = line.TrimStart().Split(' ');
             if(consoleDelegates.ContainsKey(spaceDelim[0])){
                 Console.Write("[{0}]\n", spaceDelim[0]);
-                consoleDelegates[spaceDelim[0]](line);
+                try{
+                    consoleDelegates[spaceDelim[0]](line);
+                }catch {
+                    Console.Write("The command spceified can't be completed due to a system error.\n");
+                }
+                Console.Write("\n");
             }else{
                 Console.Write("We can't process your command!\ntype 'help' to see all available commands\n");
             }

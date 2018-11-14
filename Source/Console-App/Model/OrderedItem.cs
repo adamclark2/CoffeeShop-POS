@@ -45,7 +45,6 @@ namespace Model{
         }
 
         public OrderedItem(Drink d, List<Extra> e, string size){
-            System.Console.Write("CONSTRUCTOR!\n");
             if(d == null){
                 errors.Add(OrderErrors.NULL_ITEM);
             }else{

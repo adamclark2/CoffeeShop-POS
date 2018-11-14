@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 namespace Model{
     public class Size{
+        public Size(){}
+        public Size(string name, double price){
+            Name = name;
+            Price = price;
+        }
         public string Name{get;set;}
         public double Price{get;set;}
     }
@@ -11,6 +16,11 @@ namespace Model{
         public string Name{get;set;}
         public List<Size> Sizes{get;set;}
         public List<Extra> Extras{get;set;}
+
+        public Food(){
+            Sizes = new List<Size>();
+            Extras = new List<Extra>();
+        }
 
         public Extra getExtra(string name){
             foreach(Extra e in Extras){

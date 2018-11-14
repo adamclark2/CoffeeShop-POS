@@ -1,0 +1,17 @@
+menu-list
+menu-add-drink
+menu-add-drink-size "tea" "small" "2.50"
+menu-add-drink-size "tea" "medium" "3.50"
+menu-add-drink-size "tea" "large" "4.50"
+menu-add-drink-extra "sweetener stuff" 2.50
+menu-add-drink-extra "sweetener stuff2"
+menu-add-drink-extra "sweetener stuff" 88.50
+
+menu-list
+menu-add-food
+menu-add-food-size "muffin" "2.50"
+menu-add-food-size "muffin" "big" "3.50"
+menu-add-food-extra "muffin" "ext"
+
+order tea large "Espresso Shot" "sweetener stuff",muffin big,muffin small ext, coffee small "sweetener stuff"
+exit
