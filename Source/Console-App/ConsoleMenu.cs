@@ -87,6 +87,7 @@ namespace Console_App
             ser.WriteObject(wr, receipt.order);
             wr.Flush();
             wr.Close();
+            fs.Close();
 
 
             fs = File.Create("outputs/ADAM.CLARK."+ Program.number +".receipt.json");
@@ -95,7 +96,9 @@ namespace Console_App
             ser.WriteObject(wr, receipt);
             wr.Flush();
             wr.Close();
+            fs.Close();
 
+            Console.Write("Receipt:\n{0}\n", receipt);
             Console.Write("\nThanks, for your order have a good day!\n");
         }
 

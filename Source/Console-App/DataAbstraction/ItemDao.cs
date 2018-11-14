@@ -22,5 +22,9 @@ namespace DataAbstration{
         bool removeDrink(string name);
         bool removeFood(string name);
         bool removeDrinkExtra(string name);
+
+        bool addDrink(Drink d);
+        bool addFood(Food f);
+        bool addDrinkExtra(Extra e);
     }
 }

@@ -27,7 +27,28 @@ namespace Console_App
             consoleDelegates.Add("menu-remove-drink",       menuRemoveDrinkDelegate);
             consoleDelegates.Add("menu-remove-food",        menuRemoveFoodDelegate);
             consoleDelegates.Add("menu-remove-drinkextra",  menuRemoveDrinkExtraDelegate);
+            /* TODO 
+            consoleDelegates.Add("menu-add-drink",          menuAddDrinkDelegate);
+            consoleDelegates.Add("menu-add-food",           menuAddFoodDelegate);
+            consoleDelegates.Add("menu-add-drinkextra",     menuAddDrinkExtraDelegate);*/
         }
+        private static void menuAddDrinkExtraDelegate(string args){
+            // menu-add-drinkextra "name" "cost"
+            string[] arr = args.Trim().Split('\"');
+            string name = arr[1];
+            string cost = arr[3];
+        }
+
+        private static void menuAddDrinkDelegate(string args){
+            //menu-add-drink name "size-name:cost" "size-name:cost" ...
+        }
+
+        private static void menuAddFoodDelegate(string args){
+            //menu-add-food name "size-name:cost" "size-name:cost"
+            // Add extras via additional user input
+        }
+
+        
 
         private static void menuRemoveDrinkExtraDelegate(string args){
             string[] arr = args.Split('\"');

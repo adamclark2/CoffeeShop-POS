@@ -101,5 +101,15 @@ namespace DataAbstration{
             }
             return hasRem;
         }
+
+        public bool addDrink(Drink d){
+            return false;
+        }
+        public bool addFood(Food f){
+            return false;
+        }
+        public bool addDrinkExtra(Extra e){
+            return false;
+        }
     }
 }
