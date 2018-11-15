@@ -112,11 +112,40 @@ namespace Console_App
             commands in the menu and msc help information
          */
         private void helpDelegate(string args){
+            Console.Write("\nTo use a command, at the prompt enter a command then press enter\n\n");
             Console.Write("Commands:\n");
-            Console.Write("   order [item name] [extra 1] [extra 2] ...\n");
-            Console.Write("   order [item name] [extra 1] [extra n],order [item name] [extra 1] [extra n] ...\n");
-            Console.Write("   exit\n");
-            Console.Write("   help\n");
+            Console.Write("   Order an Item:\n");
+            Console.Write("      order [item name] [size] [extra 1] ...\n");
+            Console.Write("      order [item name] [size] [extra ...],order [item name] [size] [extra n] ...\n");
+            Console.Write("      order [item name] [size] [extra 1] [extra 2],order [item name] [size],order [item name] [size] [extra 1] [extra 2] [extra 3] ...\n");
+            Console.Write("\n");            
+            Console.Write("   Exit Application:\n");
+            Console.Write("      exit\n");
+            Console.Write("      q\n");
+            Console.Write("\n");            
+            Console.Write("   Display help prompt:\n");
+            Console.Write("      help\n");
+
+            Console.Write("\n");
+            Console.Write("   Display the menu:\n");
+            Console.Write("      menu-list\n");
+
+            Console.Write("\n");
+            Console.Write("   Add somthing to the menu:\n");
+            Console.Write("      menu-add-food [item name]\n");
+            Console.Write("      menu-add-food-size [food name] [size name] [item price]\n");
+            Console.Write("      menu-add-food-extra [food name] [extra name] [price]\n");
+            Console.Write("\n");
+            Console.Write("      menu-add-drink [drink name]\n");
+            Console.Write("      menu-add-drink-size [drink name] [size name] [price]\n");
+            Console.Write("      menu-add-drink-extra [extra name] [price]\n");
+
+            Console.Write("\n");
+            Console.Write("   Remove somthing from the menu:\n");
+            Console.Write("      menu-remove-drink [drink name]:\n");
+            Console.Write("      menu-remove-food [food name]:\n");
+            Console.Write("      menu-remove-drinkextra [extra name]:\n");
+
         }
     }
 

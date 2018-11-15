@@ -21,8 +21,11 @@ A point of sale system for a coffee shop.
 - [X] Extra Credit:  
 Create a command line interface to add, delete, or modify your shop's menu. Please be certain to clearly document your extra credit in the write up.
 
-   - [X] Delete Items From Menu
-   - [ ] Add items to menu
+   - [X] Delete Items From Menu  
+      See `examples/operation.4.txt` for an example  
+
+   - [X] Add items to menu  
+      See `examples/operation.5.txt` for an example  
 
 # Build and Run Console
 

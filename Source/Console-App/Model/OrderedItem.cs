@@ -4,6 +4,10 @@ using System.Runtime.Serialization;
 using System;
 
 namespace Model{
+
+    /*
+        Errors contained in an order
+     */
     [DataContract]
     public enum OrderErrors{
         TOO_MANY_SIZE,
@@ -11,6 +15,11 @@ namespace Model{
         NULL_ITEM
     }
 
+    /*
+        An item in the menu that the customer has ordered
+
+        This can be serialized/de-serialized to/from json
+     */
     [DataContract]
     public class OrderedItem{
         [DataMember]
@@ -44,6 +53,7 @@ namespace Model{
             }
         }
 
+        /// Constructor
         public OrderedItem(Drink d, List<Extra> e, string size){
             if(d == null){
                 errors.Add(OrderErrors.NULL_ITEM);
@@ -70,6 +80,7 @@ namespace Model{
             }
         }
 
+        /// Constructor
         public OrderedItem(Food f, List<Extra> e, string size){
             if(f == null){
                 errors.Add(OrderErrors.NULL_ITEM);

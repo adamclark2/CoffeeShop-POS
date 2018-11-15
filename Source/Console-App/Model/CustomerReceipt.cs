@@ -5,6 +5,13 @@ using DataAbstration;
 using System.Text;
 
 namespace Model{
+
+    /*
+        A representation of a Customers Receipt
+
+        This is a DataContract so it can be serialized/de-serialized
+        to/from json
+     */
     [DataContract]
     public class CustomerReceipt{
         [DataMember]
@@ -16,6 +23,11 @@ namespace Model{
 
         /**
             Add orders contained in an order string
+
+            The string should be of the form
+            order {item name} {item size} {optional item extra} {optional item extra}, {item name} .....
+
+            See Tokenizer for more information about tokens
          */
         public void addOrders(string orderStr){
             List<List<string>> orders = Tokenizer.tokenizeString(orderStr.TrimStart());
@@ -70,6 +82,11 @@ namespace Model{
             }
         }
 
+        /*
+            Get a string representation of the customer receipt
+
+            Suitable for printing to the console
+         */
         override public string ToString(){
             return "Price: " + string.Format("${0:N2}", order.Price) + "\n";
         }

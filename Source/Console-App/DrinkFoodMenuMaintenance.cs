@@ -22,12 +22,18 @@ namespace Console_App
             menu-remove-food       => menuRemoveFoodDelegate
             menu-remove-drinkextra => menuRemoveDrinkExtraDelegate
          */
+
+         /*
+            Add the menu options to the consoleDelegates Dictionary.
+          */
         public static void addMenuOptions(Dictionary<string, ConsoleMenuDelegate> consoleDelegates){
             consoleDelegates.Add("menu-list",  menuListDelegate);
             consoleDelegates.Add("menu-remove-drink",       menuRemoveDrinkDelegate);
             consoleDelegates.Add("menu-remove-food",        menuRemoveFoodDelegate);
             consoleDelegates.Add("menu-remove-drinkextra",  menuRemoveDrinkExtraDelegate);
 
+            // Adding an item has duplicate code
+            // So only one function was coded 
             consoleDelegates.Add("menu-add-drink",          (string args) => menuAddItemDelegate("drink", args));
             consoleDelegates.Add("menu-add-drink-size",     (string args) => menuAddItemDelegate("drink-size", args));
             consoleDelegates.Add("menu-add-drink-extra",    (string args) => menuAddItemDelegate("drink-extra", args));
@@ -36,6 +42,23 @@ namespace Console_App
             consoleDelegates.Add("menu-add-food-extra",     (string args) => menuAddItemDelegate("food-extra", args));
         }
 
+        /*
+            Add a item to the menu.
+
+            types supported include:
+            "drink" := Add a drink to the menu
+            "drink-size" := Add a size to a drink
+            "drink-extra" := Add a drink extra
+            "food" := Add a food to the menu
+            "food-size" := Add a size to a food
+            "food-extra" := Add a extra to a food
+
+            This function can be curried(https://en.wikipedia.org/wiki/Currying) to turn it into a ConsoleMenuDelegate
+            to do that via lambda you do:
+            (string args) => menuAddItemDelegate("food-extra", args));
+
+            Replace "food-extra" with whatever type
+         */
         public static void menuAddItemDelegate(string type, string args){
             List<List<string>> tokens = Tokenizer.tokenizeString(args);
             if(tokens.Count < 1 || tokens.Count > 3){
@@ -150,9 +173,13 @@ namespace Console_App
         }
         
 
+        /*
+            Remove a drink-extra from the menu
+         */
         private static void menuRemoveDrinkExtraDelegate(string args){
-            string[] arr = args.Split('\"');
-            if(arr.Length < 2){
+            List<List<string>> tokens = Tokenizer.tokenizeString(args);
+            List<string> arr = tokens[0];
+            if(arr.Count < 2){
                 Console.Write("Please specify a drink-extra to remove\n");
                 return;
             }
@@ -166,9 +193,13 @@ namespace Console_App
             }
         }
 
+        /*
+            Remove a drink from the menu
+         */
         private static void menuRemoveDrinkDelegate(string args){
-            string[] arr = args.Split('\"');
-            if(arr.Length < 2){
+            List<List<string>> tokens = Tokenizer.tokenizeString(args);
+            List<string> arr = tokens[0];
+            if(arr.Count < 2){
                 Console.Write("Please specify a drink to remove\n");
                 return;
             }
@@ -182,9 +213,13 @@ namespace Console_App
             }
         }
 
+        /*
+            Remove a food from the menu
+         */
         private static void menuRemoveFoodDelegate(string args){
-            string[] arr = args.Split('\"');
-            if(arr.Length < 2){
+            List<List<string>> tokens = Tokenizer.tokenizeString(args);
+            List<string> arr = tokens[0];
+            if(arr.Count < 2){
                 Console.Write("Please specify a food to remove\n");
                 return;
             }
