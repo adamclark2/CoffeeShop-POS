@@ -79,7 +79,7 @@ Create a command line interface to add, delete, or modify your shop's menu. Plea
 
 # Build and Run Console
 
-        cd Source/Console-App
+        cd Source
         dotnet run ../examples/input.1.json
 
 # Make Targets
