@@ -1,0 +1,62 @@
+{
+  "Payment": {
+    "AmountDue": 18,
+    "AmountPayed": 0,
+    "Change": 0,
+    "HasPayedInFullOrMore": false,
+    "PaymentMethods": [ ]
+  },
+  "items": [
+    {
+      "Name": "tea",
+      "Size": "large",
+      "SizeCost": 4.5,
+      "extras": [
+        {
+          "Name": "Espresso Shot",
+          "Price": 0.5
+        },
+        {
+          "Name": "sweetener stuff",
+          "Price": 2.5
+        }
+      ],
+      "type": "drink"
+    },
+    {
+      "Name": "muffin",
+      "Size": "big",
+      "SizeCost": 3.5,
+      "extras": [ ],
+      "type": "food"
+    },
+    {
+      "Name": "muffin",
+      "Size": "small",
+      "SizeCost": 2.5,
+      "extras": [
+        {
+          "Name": "ext",
+          "Price": 1
+        }
+      ],
+      "type": "food"
+    },
+    {
+      "Name": "coffee",
+      "Size": "small",
+      "SizeCost": 1,
+      "extras": [
+        {
+          "Name": "sweetener stuff",
+          "Price": 2.5
+        }
+      ],
+      "type": "drink"
+    }
+  ],
+  "order": {
+    "Error": null,
+    "Price": 18
+  }
+}

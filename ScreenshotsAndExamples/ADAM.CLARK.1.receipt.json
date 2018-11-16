@@ -1,0 +1,56 @@
+{
+  "Payment": {
+    "AmountDue": 5,
+    "AmountPayed": 5,
+    "Change": 0,
+    "HasPayedInFullOrMore": true,
+    "PaymentMethods": [
+      {
+        "Amount": 5,
+        "Code": "",
+        "Type": 0
+      }
+    ]
+  },
+  "items": [
+    {
+      "Name": "coffee",
+      "Size": "medium",
+      "SizeCost": 2,
+      "extras": [
+        {
+          "Name": "whipcream",
+          "Price": 0.5
+        },
+        {
+          "Name": "flavorshot",
+          "Price": 0
+        }
+      ],
+      "type": "drink"
+    },
+    {
+      "Name": "coffee",
+      "Size": "small",
+      "SizeCost": 1,
+      "extras": [ ],
+      "type": "drink"
+    },
+    {
+      "Name": "bagel",
+      "Size": "half",
+      "SizeCost": 1.5,
+      "extras": [
+        {
+          "Name": "butter",
+          "Price": 0
+        }
+      ],
+      "type": "food"
+    }
+  ],
+  "order": {
+    "Error": null,
+    "Price": 5
+  }
+}

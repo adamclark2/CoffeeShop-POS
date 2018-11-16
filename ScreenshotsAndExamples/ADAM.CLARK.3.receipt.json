@@ -1,0 +1,28 @@
+{
+  "Payment": {
+    "AmountDue": 2,
+    "AmountPayed": 999.99,
+    "Change": -997.99,
+    "HasPayedInFullOrMore": true,
+    "PaymentMethods": [
+      {
+        "Amount": 999.99,
+        "Code": "CC Number Here",
+        "Type": 1
+      }
+    ]
+  },
+  "items": [
+    {
+      "Name": "Coffee V2",
+      "Size": "Medium",
+      "SizeCost": 2,
+      "extras": [ ],
+      "type": "drink"
+    }
+  ],
+  "order": {
+    "Error": null,
+    "Price": 2
+  }
+}
