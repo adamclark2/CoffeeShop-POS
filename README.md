@@ -7,7 +7,7 @@ A point of sale system for a coffee shop.
 
    - [X] Get input from customer via console
    - [X] Give price to customer via console
-   - [ ] Output receipt to console
+   - [X] Output receipt to console
    - [X] Give price to customer via `./outputs/ADAM.CLARK.X.json`
 
 - [ ] Additional Tasks
@@ -16,7 +16,8 @@ A point of sale system for a coffee shop.
 
    - [ ] Allow purchase of "meals" that include a food and a drink item as a combo. Allow your program to apply a 10% discount automatically when items can be grouped into combos. This discount should apply for each pair of drink and food items in the order. For example, if a customer orders two large coffees and one croissant, the discount should only apply to one of the coffees and the croissant. To be generous with your customers, you should discount the most expensive drink when calculating the total order amount.
 
-   - [ ] Allow the system to optionally pass a payment method. Provide a 5% discount to customers that pay with cash, instead of a credit card. This discount would be in addition to the discounts given for combo meals and should be applied after other discounts have been calculated.
+   - [X] Allow the system to optionally pass a payment method. Provide a 5% discount to customers that pay with cash, instead of a credit card. This discount would be in addition to the discounts given for combo meals and should be applied after other discounts have been calculated.
+      - Discount isn't implemented
 
 - [X] Extra Credit:  
 Create a command line interface to add, delete, or modify your shop's menu. Please be certain to clearly document your extra credit in the write up.

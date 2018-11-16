@@ -1,2 +1,3 @@
 order coffee medium whipcream flavorshot, coffee small, bagel half butter
+3
 exit

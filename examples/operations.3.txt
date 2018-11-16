@@ -1,2 +1,6 @@
 order "Coffee V2" Medium
+1
+999.99
+CC Number Here
+N
 exit

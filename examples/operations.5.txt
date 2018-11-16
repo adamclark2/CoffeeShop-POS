@@ -12,4 +12,5 @@ menu-add-food-size "muffin" "big" "3.50"
 menu-add-food-extra "muffin" "ext" "1.00"
 
 order tea large "Espresso Shot" "sweetener stuff",muffin big,muffin small ext, coffee small "sweetener stuff"
+6
 exit

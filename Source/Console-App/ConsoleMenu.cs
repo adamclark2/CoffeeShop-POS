@@ -52,8 +52,12 @@ namespace Console_App
                 Console.Write("[{0}]\n", spaceDelim[0]);
                 try{
                     consoleDelegates[spaceDelim[0]](line);
-                }catch {
+                }catch (Exception e){
                     Console.Write("The command spceified can't be completed due to a system error.\n");
+                    Console.Write(e + "\n\n");
+                    Console.Write(e.Message);
+                    Console.Write(e.StackTrace);
+
                 }
                 Console.Write("\n");
             }else{
@@ -75,12 +79,86 @@ namespace Console_App
             Environment.Exit(0);
         }
 
+        private void payOrder(CustomerReceipt receipt){
+            bool isDone = false;
+            while(!isDone){
+                Console.Write("\nPayment:\n");
+                Console.Write("[0] Cash\n");
+                Console.Write("[1] Credit Card\n");
+                Console.Write("[2] Check\n");
+                Console.Write("[3] Cash in full\n");
+                Console.Write("[4] Credit Card in full\n");
+                Console.Write("[5] Check in full\n");
+                Console.Write("[6] No payment\n");
+
+                double d = 0.00;
+                TenderTypes t;
+                string codeNum = "";
+
+                int choice = 0;
+                if(!int.TryParse(System.Console.ReadLine(), out choice)){
+                    Console.Write("Choose a valid option\n");
+                    payOrder(receipt);
+                    return;
+                }
+
+                if(choice == 6){return;}
+                if(choice < 0 || choice > 5){
+                    Console.Write("Choose a valid option\n");
+                    payOrder(receipt);
+                    return;
+                }
+
+                // Convert the number into the enum
+                t = choice < 3 ? (TenderTypes) choice : (TenderTypes)(choice - 3);
+
+                // Get Amount
+                if(choice < 3){
+                    Console.Write("Enter Amount Paid:\n");
+                    if(!Double.TryParse(System.Console.ReadLine(), out d)){
+                        Console.Write("Only a number can be entered try again\n");
+                        payOrder(receipt);
+                    }
+                }else{
+                    // Pay in full
+                    d = receipt.Payment.AmountDue;
+                }
+
+                // Get code on credit card
+                // or check numbers
+                if(t != TenderTypes.CASH){
+                    Console.Write("Enter the {0} number:\n", t);
+                    codeNum = System.Console.ReadLine();
+                }
+
+                Tender tender = receipt.Payment.addTender(t, d, codeNum);
+                Console.Write("Added Payment: %s", tender);
+
+                if(choice > 2){
+                    return;
+                }
+
+                Console.Write("Amount Due: {0} | Paid: {1} | Change Due so Far: {2}\n",receipt.Payment.AmountDue, receipt.Payment.AmountPayed, receipt.Payment.Change);
+                Console.Write("Would you like to add another payment Method?\n[Y] yes\n[N] no");
+                while(true){
+                    string input = Console.ReadLine();
+                    if(input.ToLower().Equals("y")){
+                        payOrder(receipt);
+                        return;
+                    }else if(input.ToLower().Equals("n")){
+                        return;
+                    }
+                }
+            }
+        }
+
         /**
             Order somthing
          */
         private void orderDelegate(string args){
             CustomerReceipt receipt = new CustomerReceipt();
             receipt.addOrders(args);
+            payOrder(receipt);
 
             if(!Directory.Exists("outputs")){
                 Directory.CreateDirectory("outputs");

@@ -105,5 +105,14 @@ namespace Model{
                 }
             }
         }
+
+        override public string ToString(){
+            string extrasStr = "";
+            foreach(Extra e in extras){
+                extrasStr += e.Name + " ";
+            }
+            extrasStr = extrasStr.Equals("") ? "" : "Extras: " + extrasStr;
+            return string.Format("{0:N2} [{1}:{2}] {3}", Price, Name, Size, extrasStr);
+        }
     }
 }

@@ -20,6 +20,9 @@ namespace Model{
         [DataMember]
         public List<OrderedItem> items{get;set;} = new List<OrderedItem>();
 
+        [DataMember]
+        public Payment Payment{get;set;} = new Payment();
+
 
         /**
             Add orders contained in an order string
@@ -62,6 +65,7 @@ namespace Model{
 
                     items.Add(oo);
                     order.Price += oo.Price;
+                    Payment.AmountDue += oo.Price;
                     foreach(OrderErrors ee in oo.errors){
                         if(ee == OrderErrors.NULL_ITEM){
                             order.Error += "The item [" + oo.Name + "] doesn't exist in the data.\n";
@@ -88,7 +92,22 @@ namespace Model{
             Suitable for printing to the console
          */
         override public string ToString(){
-            return "Price: " + string.Format("${0:N2}", order.Price) + "\n";
+            string ret = "";
+            foreach(OrderedItem oi in items){
+                ret += "   " + oi + "\n";
+            }
+
+            ret += "\n   Price: " + string.Format("${0:N2}", order.Price) + "\n";
+
+            foreach(Tender t in Payment.PaymentMethods){
+                ret += "   " + t + "\n";
+            }
+
+            ret += "\n\n";
+            ret += string.Format("Amount Due: {0} | Paid: {1} | Change Due so Far: {2}\n",Payment.AmountDue, Payment.AmountPayed, Payment.Change);
+            ret += string.Format("Has paid: {0}\n", Payment.HasPayedInFullOrMore ? "YES" : "**NO**");
+            order.Error += "The casheer didn't get enough money from the customer\n";
+            return ret;
         }
     }
 }
