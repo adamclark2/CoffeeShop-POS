@@ -1,0 +1,36 @@
+Enter a Command:
+help
+[help]
+
+To use a command, at the prompt enter a command then press enter
+
+Commands:
+   Order an Item:
+      order [item name] [size] [extra 1] ...
+      order [item name] [size] [extra ...],order [item name] [size] [extra n] ...
+      order [item name] [size] [extra 1] [extra 2],order [item name] [size],order [item name] [size] [extra 1] [extra 2] [extra 3] ...
+
+   Exit Application:
+      exit
+      q
+
+   Display help prompt:
+      help
+
+   Display the menu:
+      menu-list
+
+   Add somthing to the menu:
+      menu-add-food [item name]
+      menu-add-food-size [food name] [size name] [item price]
+      menu-add-food-extra [food name] [extra name] [price]
+
+      menu-add-drink [drink name]
+      menu-add-drink-size [drink name] [size name] [price]
+      menu-add-drink-extra [extra name] [price]
+
+   Remove somthing from the menu:
+      menu-remove-drink [drink name]:
+      menu-remove-food [food name]:
+      menu-remove-drinkextra [extra name]:
+

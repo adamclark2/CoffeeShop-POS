@@ -78,9 +78,17 @@ Create a command line interface to add, delete, or modify your shop's menu. Plea
       See `examples/operation.5.txt` for an example  
 
 # Build and Run Console
+Note: On windows use `\` instead of `/`
 
         cd Source
         dotnet run ../examples/input.1.json
+
+# Build Then Run in Console
+Note: On windows use `\` instead of `/`
+
+      cd Source
+      dotnet build
+      dotnet ../build/Console-App/bin/Debug/netcoreapp2.0/Console-App.dll ../examples/input.1.json
 
 # Make Targets
 Run these on a `Unix-Like` platform to run a series of tests or clean up build products.
