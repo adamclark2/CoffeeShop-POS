@@ -5,7 +5,7 @@ A point of sale system for a coffee shop.
 This is a markdown file, you can view it in a markdown editor or on github. 
 https://github.com/adamclark2/CoffeeShop-POS 
 
-> The github repo is private and I will make it public on friday. If the link doesn't work that's probably why.
+> The github repo is private and I will make it public on friday (Nov 16th 2018). If the link doesn't work that's probably why.
 
 # Environment Setup
 This codebase used `c#` in the `dotnet core` enviroment. If you use a different dotnet environment 
@@ -30,7 +30,7 @@ only works on mac-os and linux though.
 * I also output the file `Adam.Clark.X.receipt.json` this is a copy of the receipt object 
    * I used this for debug but it might be useful to have, so I'm keeping it in here
 * Automated Test Issues
-   * Tests in the makefile may crash the program if a tender isn't added correctly
+   * Tests in the makefile may crash the program if a tender isn't added
    * Tests I added work fine (On my system)
    * Those issues only happen in the `make test` command, manually things work fine
 
@@ -39,7 +39,7 @@ If you have an issue with the code, the best place to contact me is email:
 adam.clark@maine.edu
 
 You can also contact me via the phone number on my resume. My resume will be in the
-submission but will not be on github.
+submission but will **not** be on github.
 
 # credits and acknowledgement
 I didn't use anything special for my project. 
@@ -80,7 +80,7 @@ Create a command line interface to add, delete, or modify your shop's menu. Plea
 # Build and Run Console
 
         cd Source/Console-App
-        dotnet run ../../examples/input.1.json
+        dotnet run ../examples/input.1.json
 
 # Make Targets
 Run these on a `Unix-Like` platform to run a series of tests or clean up build products.
