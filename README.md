@@ -1,9 +1,58 @@
 # CoffeeShop-POS
 A point of sale system for a coffee shop.
 
+# Note
+This is a markdown file, you can view it in a markdown editor or on github. 
+https://github.com/adamclark2/CoffeeShop-POS 
+
+> The github repo is private and I will make it public on friday. If the link doesn't work that's probably why.
+
+# Environment Setup
+This codebase used `c#` in the `dotnet core` enviroment. If you use a different dotnet environment 
+the codebase might not compile or run correctly.
+
+### Download Here
+https://www.microsoft.com/net/download
+
+### Learn More
+https://docs.microsoft.com/en-us/dotnet/core/
+
+## Unix Features
+This project has a makefile. If you use the `make` command you can run a battery of tests. This
+only works on mac-os and linux though. 
+
+# Bugs/Unimplemented things
+* Discount to cash tenders not implemented
+* Meal deals not implemented 
+* You can add a drink/food and have it without a size
+   * Implication: You have an item in the menu you can't order
+   * Quick Fix: Add a size via the command
+* I also output the file `Adam.Clark.X.receipt.json` this is a copy of the receipt object 
+   * I used this for debug but it might be useful to have, so I'm keeping it in here
+* Automated Test Issues
+   * Tests in the makefile may crash the program if a tender isn't added correctly
+   * Tests I added work fine (On my system)
+   * Those issues only happen in the `make test` command, manually things work fine
+
+# Contact Info
+If you have an issue with the code, the best place to contact me is email:
+adam.clark@maine.edu
+
+You can also contact me via the phone number on my resume. My resume will be in the
+submission but will not be on github.
+
+# credits and acknowledgement
+I didn't use anything special for my project. 
+
+* dotnet core
+   * C# functionality
+   * Data serialization
+   * Generic data structures
+
+
 # Tasks Completed
 
-- [ ] REQUIRED: For any given drink order, provide a correct price to the customer. This price should account for the variety of options applicable to a drink such as type, size, and add-ons. As part of the input file, you will be provided with information about the price options for different sized drinks, types of drinks and add-ons such as an extra shot of espresso, flavored syrup, or whipped cream. For any given combination of these things, your program should be able to output a price for the order. A few constraints do apply: customers shouldn't be able to order an add-on without ordering a drink and customers must specify a size for their drink.
+- [X] REQUIRED: For any given drink order, provide a correct price to the customer. This price should account for the variety of options applicable to a drink such as type, size, and add-ons. As part of the input file, you will be provided with information about the price options for different sized drinks, types of drinks and add-ons such as an extra shot of espresso, flavored syrup, or whipped cream. For any given combination of these things, your program should be able to output a price for the order. A few constraints do apply: customers shouldn't be able to order an add-on without ordering a drink and customers must specify a size for their drink.
 
    - [X] Get input from customer via console
    - [X] Give price to customer via console
@@ -38,10 +87,3 @@ Run these on a `Unix-Like` platform to run a series of tests or clean up build p
 
         make test
         make clean
-
-# Build and Run Web
-
-        cd Source/Web-App
-        dotnet run
-
-Open a web browser and go to http://localhost:5000
