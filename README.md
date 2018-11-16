@@ -41,7 +41,7 @@ adam.clark@maine.edu
 You can also contact me via the phone number on my resume. My resume will be in the
 submission but will **not** be on github.
 
-# credits and acknowledgement
+# Credits and Acknowledgement
 I didn't use anything special for my project. 
 
 * dotnet core
